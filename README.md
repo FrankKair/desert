@@ -27,7 +27,11 @@ and incremental generational automatic garbage collection.
 
 ---
 
-### General
+### Stdlib (previously Pervasives)
+
+[Stdlib](https://caml.inria.fr/pub/docs/manual-ocaml/libref/Stdlib.html) is automatically opened in every OCaml program.
+
+### Functions
 
 Every OCaml function takes exactly one argument (auto currying).
 
@@ -40,6 +44,7 @@ let add = fun x -> (fun y -> x + y)
 Pattern matching with match and function (no need for type annotations, since OCaml's inference is quite powerful).
 
 ```ocaml
+(* `'a` - tick alpha - is called a type variable, expressing that the type is generic *)
 let rec size (t: 'a tree): int =
   match t with
   | Empty -> 0
@@ -50,9 +55,22 @@ let rec size = function
   | Node(l, _, r) -> 1 + (size l) + (size r)
 ```
 
+And here's an example of a labelled argument that is also optional with a default value.
+
+```ocaml
+let concat ?(sep="") x y = x ^ sep ^ y;;
+(* val concat : ?sep:string -> string -> string -> string = <fun> *)
+
+concat "foo" "bar";;
+(* string = "foobar" *)
+
+concat ~sep:":" "foo" "bar";;
+(* string = "foo:bar" *)
+```
+
 ### Lists and tuples
 
-Tuples are the simplest aggregate data type in OCaml. Note the product type `int * string`.
+Tuples are the simplest aggregate data type in OCaml. Note the product type `int * string`. `*` is used in the type because that type corresponds to the set of all pairs containing one value of type int and one of type string. In other words, it’s the Cartesian product of the two types, which is why we use `*`, the symbol for product.
 
 ```ocaml
 let tuple = (1, "OCaml");;
@@ -101,6 +119,7 @@ type person = {name: string; age: int}
 ```
 
 Algebraic data type = variant with both sum and product types
+
 ```ocaml
 type point = {x: int; y: int}
 
@@ -119,6 +138,18 @@ let area = function
 ```
 
 ### References, Mutable State and Aliasing
+
+We've used Lists with functional patterns and now we're going to see some imperative programming with mutable data structures in OCaml. The simplest being the Array:
+
+```ocaml
+let nums = [|1; 2; 3; 4|];;
+nums.(2) <- 4;;
+(* unit = () *)
+(* unit is like void in other languages *)
+
+nums;;
+(* int array = [|1; 2; 4; 4|] *)
+```
 
 `mutable` keyword plus `<-` operator.
 
