@@ -27,9 +27,9 @@ and incremental generational automatic garbage collection.
 
 ---
 
-### Stdlib (previously Pervasives)
+### Stdlib
 
-[Stdlib](https://caml.inria.fr/pub/docs/manual-ocaml/libref/Stdlib.html) is automatically opened in every OCaml program.
+[Stdlib](https://caml.inria.fr/pub/docs/manual-ocaml/libref/Stdlib.html) (previously Pervasives) is automatically opened in every OCaml program.
 
 ### Functions
 
@@ -175,6 +175,19 @@ Equality
 Structural equality operator `=`, recursively traverses the data structure to determine whether its arguments are equal.
 
 Reference equality operator `==`, only looks at heap locations, so equates fewer things than structural equality.
+
+### Data Structures
+
+Comparison of OCaml built-in [data structures](https://ocaml.org/learn/tutorials/comparison_of_standard_containers.html) performance. Here's a tl;dr:
+
+- Lists: immutable singly-linked lists;
+- Arrays: mutable vectors;
+- Strings: immutable vectors;
+- Set and Map: immutable trees;
+- Hashtbl: automatically growing hash table (mutable);
+- Buffer: extensible (mutable) strings;
+- Queue: mutable FIFO;
+- Stack: mutable LIFO.
 
 ### Modules
 
