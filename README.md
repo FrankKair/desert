@@ -23,7 +23,7 @@ and incremental generational automatic garbage collection.
 
 [Unix system programming in OCaml](https://github.com/ocaml/ocamlunix)
 
-[Developing Applications with Objective Caml](https://caml.inria.fr/pub/docs/oreilly-book/html/index.html)
+[Purely functional data structures in OCaml](https://github.com/mmottl/pure-fun)
 
 ---
 
